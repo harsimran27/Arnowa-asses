@@ -1,7 +1,8 @@
 let express = require("express");
 let authRouter = express.Router();
-let { bodyChecker} = require("../util_func");
+let { bodyChecker } = require("../util_func");
 let jwt = require("jsonwebtoken");
+let axios = require("axios");
 
 const userModel = require("../userModel");
 const { JWT_SECRET } = require("../secret");

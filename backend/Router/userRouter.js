@@ -21,6 +21,7 @@ userRouter
 
 userRouter
     .route("/")
+    .get(getUser)
     .post(bodyChecker, createUser);
 
 module.exports = userRouter;

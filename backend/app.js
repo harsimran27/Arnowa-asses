@@ -26,12 +26,10 @@ app.use(function (req, res, next) {
     next();
 })
 
-app.use(function (req, res, next) {
-    let restOfPath = path.join("./public", "index.html");
-    res.status(404).sendFile
-        (path.join(__dirname, restOfPath));
-    next();
+app.get("/Home", (req, res) => {
+    res.redirect("Home.html");
 })
+
 
 app.use(function (req, res) {
     let restOfPath = path.join("./public", "404.html");
