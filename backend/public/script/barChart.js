@@ -1,3 +1,4 @@
+
 let labels2 = ['India', 'Oman', 'US'];
 let data2 = [246, 596, 185];
 let colors2 = ['#eddfa0', '#bdd4f5', '#f6c3a0'];

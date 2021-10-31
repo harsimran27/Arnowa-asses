@@ -15,6 +15,7 @@ authRouter
     .route("/login")
     .post(bodyChecker, loginUser);
 
+
 async function signupUser(req, res) {
     try {
         let newUser = await userModel.create(req.body);
