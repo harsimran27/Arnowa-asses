@@ -1,15 +1,18 @@
 let express = require("express");
 let authRouter = express.Router();
+let { bodyChecker} = require("../util_func");
+let jwt = require("jsonwebtoken");
 
 const userModel = require("../userModel");
+const { JWT_SECRET } = require("../secret");
 
 authRouter
     .route("/signup")
-    .post(signupUser);
+    .post(bodyChecker, signupUser);
 
 authRouter
     .route("/login")
-    .post(loginUser);
+    .post(bodyChecker, loginUser);
 
 async function signupUser(req, res) {
     try {
@@ -31,7 +34,8 @@ async function loginUser(req, res) {
         let user = await userModel.findOne({ email });
         if (user) {
             if (user.password == password) {
-                
+                let token = jwt.sign({ id: user["_id"] }, JWT_SECRET);
+                res.cookie("JWT", token);
                 res.status(200).json({
                     message: "user logged in",
                     user: user,

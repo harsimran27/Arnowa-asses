@@ -31,6 +31,40 @@ function getElement(elementModel) {
     }
 }
 
+function updateElement(elementModel) {
+    return async function (req, res) {
+
+        try {
+            let { id } = req.params;
+
+            if (req.body.password || req.body.confirmPassword) {
+                res.json({
+                    message: "use forget password instead",
+                })
+            }
+
+            let element = await elementModel.findById(id);
+
+            for (let key in req.body) {
+                element[key] = req.body[key];
+            }
+
+            await element.save({
+                validateBeforeSave: false,
+            });
+
+            res.status(200).json({
+                element: element,
+            })
+
+        } catch (err) {
+            res.status(404).json({
+                message: err.message,
+            })
+        }
+    }
+}
+
 function deleteElement(elementModel) {
     return async function (req, res) {
         try {
@@ -51,3 +85,4 @@ function deleteElement(elementModel) {
 module.exports.createElement = createElement;
 module.exports.getElement = getElement;
 module.exports.deleteElement = deleteElement;
+module.exports.updateElement = updateElement;
