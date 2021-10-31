@@ -19,10 +19,18 @@ app.listen(PORT, function () {
     console.log(`server started at port ${PORT}`);
 })
 
-app.use(function (req, res) {
+app.use(function (req, res, next) {
     let restOfPath = path.join("./public", "index.html");
     res.status(404).sendFile
         (path.join(__dirname, restOfPath));
+    next();
+})
+
+app.use(function (req, res, next) {
+    let restOfPath = path.join("./public", "index.html");
+    res.status(404).sendFile
+        (path.join(__dirname, restOfPath));
+    next();
 })
 
 app.use(function (req, res) {
