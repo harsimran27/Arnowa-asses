@@ -20,6 +20,12 @@ app.listen(PORT, function () {
 })
 
 app.use(function (req, res) {
+    let restOfPath = path.join("./public", "index.html");
+    res.status(404).sendFile
+        (path.join(__dirname, restOfPath));
+})
+
+app.use(function (req, res) {
     let restOfPath = path.join("./public", "404.html");
     res.status(404).sendFile
         (path.join(__dirname, restOfPath));
