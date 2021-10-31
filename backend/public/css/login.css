@@ -4,6 +4,7 @@
 
 body {
   font-family: "Ubuntu", sans-serif;
+  position: relative;
 }
 
 .img-container {
@@ -39,6 +40,18 @@ label {
   color: #4b5568;
   font-weight: 700;
   margin-bottom: 0.8rem;
+}
+
+label[for="Email"] {
+  position: absolute;
+  top: 19.4rem;
+  left: 17rem;
+}
+
+label[for="Password"] {
+  position: absolute;
+  top: 25rem;
+  left: 17rem;
 }
 
 input {
